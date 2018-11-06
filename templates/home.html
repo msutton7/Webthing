@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  <br>
+  Score: {{ user.age }}
+  <br>
+  Test: {{ user.CustomUser.test }}
+  <br>
+  <form action="" method="post">
+  {% csrf_token %}
+  {{ form }}
+  <button type="submit">Save changes</button>
+</form>
+<br>
+Test: {{ users.modles.test }}
+<br>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
+<br>
+<form action="#" method="get">
+ <input type="text" value="8" name="mytextbox" size="1"/>
+ <input type="submit" class="btn" value="Click" name="mybtn">
+</form>
+
+
+
+
+
+
+
+
+  <p><a href="{% url 'logout' %}">logout</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">login</a> |
+  <a href="{% url 'signup' %}">signup</a>
+{% endif %}
+{% endblock %}
